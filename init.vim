@@ -192,9 +192,10 @@ let g:asyncomplete_auto_completeopt = 0
 "nnoremap <F12> :OmniSharpFindUsages<CR>
 autocmd FileType cs nmap <silent> <Leader>gd :OmniSharpGotoDefinition<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
-autocmd FileType cs nnoremap <Leader> <C-.> :OmniSharpGetCodeActions<CR>
-autocmd FileType cs nnoremap <Leader> <Leader>fc :OmniSharpCodeFormat<CR>
+autocmd FileType cs nnoremap <Leader>fi :OmniSharpFindImplementations<CR>
+autocmd FileType cs nnoremap <buffer> <C-.> :OmniSharpGetCodeActions<CR>
+autocmd FileType cs nnoremap <buffer> <Leader>fc :OmniSharpCodeFormat<CR>
+autocmd FileType cs nnoremap <Leader> rn :OmniSharpRenameTo<CR>
 
 " OmniSharp: {{{
 let g:OmniSharp_popup_position = 'peek'
