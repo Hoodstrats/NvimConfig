@@ -5,7 +5,7 @@ let mapleader = " "
 " Set this to 1 to use ultisnips for snippet handling
 let s:using_snippets = 1 
 "Set out default session saving dir
-let g:session_dir = '/tmp/vim-sessions'
+let g:session_dir = 'C:/tmp/vim-sessions'
 "pressing leader and ss will save and overwrite out session 
 exec 'nnoremap <Leader>ss :mks! ' . g:session_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
 "restore our prev session
@@ -28,8 +28,6 @@ nnoremap <M-f> :FZF<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 "disable ctrl+Z which seems to lock up vim 
 :nmap <C-z> <nop>
-"some vscode OMNISHARP functionality 
-nnoremap <F12> :OmniSharpFindUsages<CR>
 
 call plug#begin('C:\Users\Hoodstrats\scoop\apps\neovim\current\plugged')
 "Basic NVIM LSP
@@ -129,11 +127,11 @@ set completeopt=menuone,noinsert,noselect
 let g:airline_theme='wombat'
 
 "Set colorscheme from the get go
-colorscheme gruvbox
+colorscheme srcery
 highlight Normal guibg=none
 
 "Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
+"autocmd VimEnter * NERDTree | wincmd p
 
 "make the current file's directory the working directory by default
 set autochdir
@@ -189,6 +187,15 @@ let g:asyncomplete_auto_completeopt = 0
 " }}}
 
 "Omnisharp config
+"Supprot for different goto definitions for different file types.
+"some vscode OMNISHARP functionality 
+"nnoremap <F12> :OmniSharpFindUsages<CR>
+autocmd FileType cs nmap <silent> <Leader>gd :OmniSharpGotoDefinition<CR>
+autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+autocmd FileType cs nnoremap <Leader> <C-.> :OmniSharpGetCodeActions<CR>
+autocmd FileType cs nnoremap <Leader> <Leader>fc :OmniSharpCodeFormat<CR>
+
 " OmniSharp: {{{
 let g:OmniSharp_popup_position = 'peek'
 if has('nvim')
