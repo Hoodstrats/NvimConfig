@@ -11,24 +11,6 @@ exec 'nnoremap <Leader>ss :mks! ' . g:session_dir . '/*.vim<C-D><BS><BS><BS><BS>
 "restore our prev session
 exec 'nnoremap <Leader>sr :so ' . g:session_dir. '/*.vim<C-D><BS><BS><BS><BS><BS>'
 
-""""""""""""""REMAPS""""""""""""""""""""""
-"REMAPS capital M is alt so this one would be hold ALT+m 
-nnoremap <M-m> :MarkdownPreview<CR>
-"Buffer navigation
-map <F2> :bprevious<CR>
-map <F3> :bnext<CR>
-"GIT remaps
-nmap <leader>gj :diffget //3<CR> 
-nmap <leader>gf :diffget //2<CR> 
-nmap <leader>gs :G<CR>
-"alt+f to use fuzzy finder
-nnoremap <M-f> :FZF<CR> 
-"ctrl+n toggle nerd tree useful
-:map <C-n> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-"disable ctrl+Z which seems to lock up vim 
-:nmap <C-z> <nop>
-
 call plug#begin('C:\Users\Hoodstrats\scoop\apps\neovim\current\plugged')
 "Basic NVIM LSP
 "Plug 'neovim/nvim-lspconfig'
@@ -122,6 +104,15 @@ set colorcolumn=100
 set termguicolors "allows us to have a transparent background when set in highlight below
 "Prevents autocomplete from triggering automatically and not letting us delete
 set completeopt=menuone,noinsert,noselect
+"make the current file's directory the working directory by default
+set autochdir
+"enabling these 2 features will make '/' search auto toggle between search cases 
+set ignorecase
+set smartcase
+"this will enable FOLDING with zc and zo but work with the buffer's language
+set foldmethod=syntax
+"makes sure the folded regions are opened by default
+set nofoldenable
 
 "set airline theme
 let g:airline_theme='wombat'
@@ -132,9 +123,6 @@ highlight Normal guibg=none
 
 "Start NERDTree and put the cursor back in the other window.
 "autocmd VimEnter * NERDTree | wincmd p
-
-"make the current file's directory the working directory by default
-set autochdir
 
 "Show buffer name on top of window tabline
 let g:airline#extensions#tabline#enabled = 1
@@ -186,6 +174,26 @@ let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
 " }}}
 
+""""""""""""""REMAPS""""""""""""""""""""""
+"REMAPS capital M is alt so this one would be hold ALT+m 
+nnoremap <M-m> :MarkdownPreview<CR>
+"Buffer navigation
+map <F2> :bprevious<CR>
+map <F3> :bnext<CR>
+"GIT remaps
+nmap <leader>gj :diffget //3<CR> 
+nmap <leader>gf :diffget //2<CR> 
+nmap <leader>gs :G<CR>
+"alt+f to use fuzzy finder
+nnoremap <M-f> :FZF<CR> 
+"ctrl+n toggle nerd tree useful
+:map <C-n> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+"disable ctrl+Z which seems to lock up vim 
+:nmap <C-z> <nop>
+"disable the f1 keybind it opens random window/help
+:nmap <F1> <nop>
+
 "Omnisharp config
 "Supprot for different goto definitions for different file types.
 "some vscode OMNISHARP functionality 
@@ -193,7 +201,7 @@ let g:asyncomplete_auto_completeopt = 0
 autocmd FileType cs nmap <silent> <Leader>gd :OmniSharpGotoDefinition<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
 autocmd FileType cs nnoremap <Leader>fi :OmniSharpFindImplementations<CR>
-autocmd FileType cs nnoremap <buffer> <C-.> :OmniSharpGetCodeActions<CR>
+autocmd FileType cs nnoremap <buffer> <Leader>ca :OmniSharpGetCodeActions<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fc :OmniSharpCodeFormat<CR>
 autocmd FileType cs nnoremap <Leader> rn :OmniSharpRenameTo<CR>
 
