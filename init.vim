@@ -101,7 +101,8 @@ set undofile
 set hidden
 set incsearch
 set colorcolumn=100
-set termguicolors "allows us to have a transparent background when set in highlight below
+"allows us to have a transparent background when set in highlight below
+set termguicolors 
 "Prevents autocomplete from triggering automatically and not letting us delete
 set completeopt=menuone,noinsert,noselect
 "make the current file's directory the working directory by default
@@ -119,7 +120,7 @@ let g:airline_theme='wombat'
 
 "Set colorscheme from the get go
 colorscheme srcery
-highlight Normal guibg=none
+highlight Normal guibg=#1c1b19
 
 "Start NERDTree and put the cursor back in the other window.
 "autocmd VimEnter * NERDTree | wincmd p
@@ -134,6 +135,7 @@ let g:UltiSnipsUsePythonVersion = 3 "force Utilsnips to use python 3 to avoid is
 let g:UltiSnipsExpandTrigger="<tab>"  " use <Tab> to trigger autocompletion
 let g:UltiSnipsJumpForwardTrigger="<c-j>" "jump forward and back between created syntax after tab
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsListSnippets="<c-l>"
 
 " disable header folding
 let g:vim_markdown_folding_disabled = 1
@@ -175,6 +177,11 @@ let g:asyncomplete_auto_completeopt = 0
 " }}}
 
 """"""""""""""REMAPS""""""""""""""""""""""
+"Code snippets grabbed directly from file like visualstudio does
+"<CR> lets vim know its a command to be executed
+"-1r lets vim know to insert whatever at a line above the cursor which will
+"default to the cursor position
+:nnoremap <Leader>twt :-1r D:\OtherProgramming\Snippets.txt<CR>
 "REMAPS capital M is alt so this one would be hold ALT+m 
 nnoremap <M-m> :MarkdownPreview<CR>
 "Buffer navigation
@@ -192,6 +199,8 @@ nnoremap <C-f> :NERDTreeFind<CR>
 "disable ctrl+Z which seems to lock up vim 
 :nmap <C-z> <nop>
 "disable the f1 keybind it opens random window/help
+:nmap <F1> <nop>
+"social links snippet for the top of code
 :nmap <F1> <nop>
 
 "Omnisharp config
