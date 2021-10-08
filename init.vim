@@ -84,6 +84,8 @@ Plug 'junegunn/fzf'
 call plug#end()
 
 au InsertLeave * set nopaste
+"enable default windows clipboard behavior aftering Yanking text with Y
+set clipboard=unnamed
 set guicursor=
 set relativenumber
 set noerrorbells
