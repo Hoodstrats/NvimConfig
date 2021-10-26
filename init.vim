@@ -129,7 +129,7 @@ highlight Normal guibg=#1c1b19
 
 "Show buffer name on top of window tabline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1
 
 "Configure Ultisnips for tab completion with markdown
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -206,15 +206,16 @@ nnoremap <C-f> :NERDTreeFind<CR>
 :nmap <F1> <nop>
 
 "Omnisharp config
-"Supprot for different goto definitions for different file types.
+"Support for different goto definitions for different file types.
 "some vscode OMNISHARP functionality 
-"nnoremap <F12> :OmniSharpFindUsages<CR>
 autocmd FileType cs nmap <silent> <Leader>gd :OmniSharpGotoDefinition<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
 autocmd FileType cs nnoremap <Leader>fi :OmniSharpFindImplementations<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>ca :OmniSharpGetCodeActions<CR>
 autocmd FileType cs nnoremap <buffer> <Leader>fc :OmniSharpCodeFormat<CR>
-autocmd FileType cs nnoremap <Leader> rn :OmniSharpRenameTo<CR>
+autocmd FileType cs nmap <silent> <buffer> <Leader>fx :OmniSharpFixUsings<CR>
+"the signature preview like in VSCODE that shows you what that code does etc
+autocmd FileType cs nmap <silent> <buffer> <Leader>sd :OmniSharpDocumentation<CR>
 
 " OmniSharp: {{{
 let g:OmniSharp_popup_position = 'peek'
