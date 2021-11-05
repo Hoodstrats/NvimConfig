@@ -15,6 +15,9 @@ call plug#begin('C:\Users\Hoodstrats\scoop\apps\neovim\current\plugged')
 "Basic NVIM LSP
 "Plug 'neovim/nvim-lspconfig'
 
+"GDSCRIPT GODOT
+"habamax/vim-godot
+
 "GIT related
 "Git pushing etc 
 Plug 'tpope/vim-fugitive'
@@ -103,6 +106,10 @@ set undofile
 set hidden
 set incsearch
 set colorcolumn=100
+"enable mouse scrolling and clicking to enter visual mode/highlight
+"set mouse=a
+"enale scrolling only in normal mode 
+set mouse=n
 "allows us to have a transparent background when set in highlight below
 set termguicolors 
 "Prevents autocomplete from triggering automatically and not letting us delete
@@ -121,7 +128,7 @@ set nofoldenable
 let g:airline_theme='wombat'
 
 "Set colorscheme from the get go
-colorscheme srcery
+colorscheme srcery 
 highlight Normal guibg=#1c1b19
 
 "Start NERDTree and put the cursor back in the other window.
