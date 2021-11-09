@@ -1,5 +1,4 @@
 syntax on
-
 "set leader to spacebar so spacebar + commands
 let mapleader = " "
 " Set this to 1 to use ultisnips for snippet handling
