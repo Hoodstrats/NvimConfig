@@ -11,11 +11,19 @@ exec 'nnoremap <Leader>ss :mks! ' . g:session_dir . '/*.vim<C-D><BS><BS><BS><BS>
 exec 'nnoremap <Leader>sr :so ' . g:session_dir. '/*.vim<C-D><BS><BS><BS><BS><BS>'
 
 call plug#begin('C:\Users\Hoodstrats\scoop\apps\neovim\current\plugged')
-"Basic NVIM LSP
-"Plug 'neovim/nvim-lspconfig'
 
-"GDSCRIPT GODOT
-"habamax/vim-godot
+"add multiline support like vscode,put cursor on multiple lines
+"https://github.com/terryma/vim-multiple-cursors
+
+"Omnisharp c# stuff
+Plug 'OmniSharp/omnisharp-vim'
+
+" Snippet support
+" Also makes it that method signatures are added when auto complete is chosen
+if s:using_snippets
+ Plug 'sirver/ultisnips'
+ Plug 'honza/vim-snippets'
+endif
 
 "GIT related
 "Git pushing etc 
@@ -25,10 +33,10 @@ Plug 'junegunn/gv.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 "Telescope stuff
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+"Plug 'nvim-lua/popup.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-telescope/telescope.nvim'
+"Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 "Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -51,13 +59,6 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-"Markdown editing
-" Snippet support
-if s:using_snippets
- Plug 'sirver/ultisnips'
- Plug 'honza/vim-snippets'
-endif
-
 " tabular plugin is used to format tables
 Plug 'godlygeek/tabular'
 " JSON front matter highlight plugin
@@ -66,8 +67,6 @@ Plug 'plasticboy/vim-markdown'
 " if you don't have node and yarn, use pre build
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 
-"Omnisharp c# stuff
-Plug 'OmniSharp/omnisharp-vim'
 "Auto close brackets,quotes,etc
 "Plug 'jiangmiao/auto-pairs'
 Plug 'Raimondi/delimitMate'
@@ -79,49 +78,17 @@ Plug 'Raimondi/delimitMate'
 Plug 'dense-analysis/ale'
 "Autocompletion
 Plug 'prabirshrestha/asyncomplete.vim'
+"GDSCRIPT GODOT
+Plug 'habamax/vim-godot'
 
 "FuzzFinder
 Plug 'junegunn/fzf'
 
 call plug#end()
 
-au InsertLeave * set nopaste
-"enable default windows clipboard behavior aftering Yanking text with Y
-set clipboard=unnamed
-set guicursor=
-set relativenumber
-set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-set nu
-set nowrap
-set noswapfile
-set nohlsearch
-set nobackup
-set undodir=/tmp//
-set undofile
-set hidden
-set incsearch
-set colorcolumn=100
-"enable mouse scrolling and clicking to enter visual mode/highlight
-"set mouse=a
-"enale scrolling only in normal mode 
-set mouse=n
-"allows us to have a transparent background when set in highlight below
-set termguicolors 
-"Prevents autocomplete from triggering automatically and not letting us delete
-set completeopt=menuone,noinsert,noselect
-"make the current file's directory the working directory by default
-set autochdir
-"enabling these 2 features will make '/' search auto toggle between search cases 
-set ignorecase
-set smartcase
-"this will enable FOLDING with zc and zo but work with the buffer's language
-set foldmethod=syntax
-"makes sure the folded regions are opened by default
-set nofoldenable
+if s:using_snippets
+  let g:OmniSharp_want_snippet = 1
+endif
 
 "set airline theme
 let g:airline_theme='wombat'
@@ -137,24 +104,14 @@ highlight Normal guibg=#1c1b19
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#buffer_nr_show = 1
 
-"Configure Ultisnips for tab completion with markdown
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsUsePythonVersion = 3 "force Utilsnips to use python 3 to avoid issues
-let g:UltiSnipsExpandTrigger="<tab>"  " use <Tab> to trigger autocompletion
-let g:UltiSnipsJumpForwardTrigger="<c-j>" "jump forward and back between created syntax after tab
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsListSnippets="<c-l>"
-
+" Markdown config
 " disable header folding
 let g:vim_markdown_folding_disabled = 1
-
 " do not use conceal feature, the implementation is not so good
 let g:vim_markdown_conceal = 0
-
 " disable math tex conceal feature
 let g:tex_conceal = ""
 let g:vim_markdown_math = 1
-
 " support front matter of various format
 let g:vim_markdown_frontmatter = 1  " for YAML format
 let g:vim_markdown_toml_frontmatter = 1  " for TOML format
@@ -164,19 +121,12 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 " Can be enabled or disabled
 let g:webdevicons_enable_nerdtree = 1
 " whether or not to show the nerdtree brackets around flags
-
 "Delimitmate insert line after opening brackets and enter
 let g:delimitMate_expand_cr = 2
 
 "ALE linter setup
 " ALE: {{{
-let g:ale_sign_error = '•'
-let g:ale_sign_warning = '•'
-let g:ale_sign_info = '·'
-let g:ale_sign_style_error = '·'
-let g:ale_sign_style_warning = '·'
-
-let g:ale_linters = { 'cs': ['OmniSharp'] }
+let g:ale_linters = { 'cs': ['OmniSharp']}
 " }}}
 
 " Asyncomplete: {{{
@@ -199,8 +149,9 @@ map <F3> :bnext<CR>
 nmap <leader>gj :diffget //3<CR> 
 nmap <leader>gf :diffget //2<CR> 
 nmap <leader>gs :G<CR>
-"alt+f to use fuzzy finder
-nnoremap <M-f> :FZF<CR> 
+"alt+f to use fuzzy finder can be telescope of normal fzf
+nnoremap <M-f> :FZF<CR>
+"nnoremap <M-f> :Telescope find_files<cr>
 "ctrl+n toggle nerd tree useful
 :map <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
@@ -208,44 +159,3 @@ nnoremap <C-f> :NERDTreeFind<CR>
 :nmap <C-z> <nop>
 "disable the f1 keybind it opens random window/help
 :nmap <F1> <nop>
-"social links snippet for the top of code
-:nmap <F1> <nop>
-
-"Omnisharp config
-"Support for different goto definitions for different file types.
-"some vscode OMNISHARP functionality 
-autocmd FileType cs nmap <silent> <Leader>gd :OmniSharpGotoDefinition<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-autocmd FileType cs nnoremap <Leader>fi :OmniSharpFindImplementations<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>ca :OmniSharpGetCodeActions<CR>
-autocmd FileType cs nnoremap <buffer> <Leader>fc :OmniSharpCodeFormat<CR>
-autocmd FileType cs nmap <silent> <buffer> <Leader>fx :OmniSharpFixUsings<CR>
-"the signature preview like in VSCODE that shows you what that code does etc
-autocmd FileType cs nmap <silent> <buffer> <Leader>sd :OmniSharpDocumentation<CR>
-
-" OmniSharp: {{{
-let g:OmniSharp_popup_position = 'peek'
-if has('nvim')
-  let g:OmniSharp_popup_options = {
-  \ 'winhl': 'Normal:NormalFloat'
-  \}
-else
-  let g:OmniSharp_popup_options = {
-  \ 'highlight': 'Normal',
-  \ 'padding': [0, 0, 0, 0],
-  \ 'border': [1]
-  \}
-endif
-let g:OmniSharp_popup_mappings = {
-\ 'sigNext': '<C-n>',
-\ 'sigPrev': '<C-p>',
-\ 'pageDown': ['<C-f>', '<PageDown>'],
-\ 'pageUp': ['<C-b>', '<PageUp>']
-\}
-if s:using_snippets
-  let g:OmniSharp_want_snippet = 1
-endif
-
-let g:OmniSharp_highlight_groups = {
-\ 'ExcludedCode': 'NonText'
-\}
