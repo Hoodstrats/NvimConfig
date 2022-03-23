@@ -10,9 +10,15 @@ return require('packer').startup(function()
   use 'hrsh7th/nvim-cmp'  
   --LSP autocompletion provider
   use 'hrsh7th/cmp-nvim-lsp'
+  -- hrsh completion sources
+  use 'hrsh7th/cmp-buffer'
   -- return LSPINSTALL functionality + more
   use 'williamboman/nvim-lsp-installer'  
-  
+  -- godot
+  use 'habamax/vim-godot'
+  -- enable snippets
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/vim-vsnip-integ'
   -- nice interface for LSP functions (among other things)
   use { 
     'nvim-telescope/telescope.nvim',
@@ -60,34 +66,34 @@ return require('packer').startup(function()
 
 -- autocomplete config
 local cmp = require 'cmp'
-cmp.setup {
+cmp.setup({
+  snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      end,
+    },
   mapping = {
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    })
+    ['<CR>'] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace,select = true,})
   },
   sources = {
-    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp' }, 
+    { name = 'buffer' }, 
+    {name = 'vsnip'},
   }
 }
-
+)
 local lsp_installer = require("nvim-lsp-installer")
-
 -- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
+-- Alternatively, you may also register handlers on specific server instances instead (see example below)
+
 lsp_installer.on_server_ready(function(server)
-  
-    local opts = {
-    root_dir = function(file, _)
-        if file:sub(-#".csx") == ".csx" then
-    return util.path.dirname(file)
-  end
-    return util.root_pattern("*.sln")(file) or util.root_pattern("*.csproj")(file)
-end,
-    }
+    local opts = { }
 
     -- (optional) Customize the options passed to the server
     -- if server.name == "tsserver" then
@@ -98,20 +104,4 @@ end,
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     server:setup(opts)
 end)
-
 end)
-
--- add multiline support like vscode,put cursor on multiple lines
--- https://github.com/terryma/vim-multiple-cursors
-
--- Snippet support
--- Also makes it that method signatures are added when auto complete is chosen
---if g:using_snippets
--- use 'sirver/ultisnips'
--- use 'honza/vim-snippets'
---endif
-
---Linting/error highlighting
---use 'dense-analysis/ale'
---Autocompletion
---use 'prabirshrestha/asyncomplete.vim'

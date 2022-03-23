@@ -66,7 +66,7 @@ set nofoldenable
 let g:airline_theme='wombat'
 
 "Set colorscheme from the get go
-colorscheme srcery 
+colorscheme gruvbox
 "highlight Normal guibg=#1c1b19
 highlight Normal guibg=none
 
@@ -114,8 +114,6 @@ nmap <leader>gf :diffget //2<CR>
 nmap <leader>gs :G<CR>
 "alt+f to use fuzzy finder can be telescope of normal fzf
 nnoremap <M-f> :FZF<CR>
-"alt+t to use telescope for a more precise search/in files 
-nnoremap <M-t> :Telescope find_files<cr>
 "ctrl+n toggle nerd tree useful
 :map <C-n> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
@@ -124,12 +122,14 @@ nnoremap <C-f> :NERDTreeFind<CR>
 "disable the f1 keybind it opens random window/help
 :nmap <F1> <nop>
 "Telescope and LSP remaps
-nnoremap('<leader>fu', 'Telescope lsp_references')
-nnoremap('<leader>gd', 'Telescope lsp_definitions')
-nnoremap('<leader>rn', 'lua vim.lsp.buf.rename()')
-nnoremap('<leader>dn', 'lua vim.lsp.diagnostic.goto_next()')
-nnoremap('<leader>dN', 'lua vim.lsp.diagnostic.goto_prev()')
-nnoremap('<leader>dd', 'Telescope lsp_document_diagnostics')
-nnoremap('<leader>dD', 'Telescope lsp_workspace_diagnostics')
-nnoremap('<leader>xx', 'Telescope lsp_code_actions')
-nnoremap('<leader>xd', '%Telescope lsp_range_code_actions')
+"alt+t to use telescope for a more precise search/in files 
+nnoremap <M-t> :Telescope find_files<cr>
+nnoremap<leader>fu :Telescope lsp_references<cr>
+nnoremap<leader>gd :Telescope lsp_definitions<cr>
+nnoremap<leader>rn :lua vim.lsp.buf.rename()<cr>
+nnoremap<leader>dn :lua vim.lsp.diagnostic.goto_next()<cr>
+nnoremap<leader>dN :lua vim.lsp.diagnostic.goto_prev()<cr>
+nnoremap<leader>dd :Telescope lsp_document_diagnostics<cr>
+nnoremap<leader>dD :Telescope lsp_workspace_diagnostics<cr>
+nnoremap<leader>xx :Telescope lsp_code_actions<cr>
+nnoremap<leader>xd :%Telescope lsp_range_code_actions<cr>
