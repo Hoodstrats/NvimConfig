@@ -111,6 +111,8 @@ map <F3> :bnext<CR>
 "GIT remaps
 nmap <leader>gj :diffget //3<CR> 
 nmap <leader>gf :diffget //2<CR> 
+nmap <leader>gc :G commit<CR>
+nmap <leader>gp :G push<CR>
 nmap <leader>gs :G<CR>
 "alt+f to use fuzzy finder can be telescope of normal fzf
 nnoremap <M-f> :FZF<CR>
