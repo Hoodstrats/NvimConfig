@@ -1,4 +1,4 @@
-luafile ~\scoop\apps\neovim\0.6.0\share\nvim\runtime\lua\plugins.lua
+luafile ~\scoop\apps\neovim\0.7.0\share\nvim\runtime\lua\plugins.lua
 
 syntax on
 "set leader to spacebar so spacebar + commands
@@ -124,12 +124,10 @@ nnoremap <C-f> :NERDTreeFind<CR>
 "Telescope and LSP remaps
 "alt+t to use telescope for a more precise search/in files 
 nnoremap <M-t> :Telescope find_files<cr>
-nnoremap<leader>fu :Telescope lsp_references<cr>
-nnoremap<leader>gd :Telescope lsp_definitions<cr>
+nnoremap<leader>fr :Telescope lsp_references<cr>
+nnoremap<leader>fd :Telescope lsp_definitions<cr>
 nnoremap<leader>rn :lua vim.lsp.buf.rename()<cr>
 nnoremap<leader>dn :lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap<leader>dN :lua vim.lsp.diagnostic.goto_prev()<cr>
 nnoremap<leader>dd :Telescope lsp_document_diagnostics<cr>
 nnoremap<leader>dD :Telescope lsp_workspace_diagnostics<cr>
-nnoremap<leader>xx :Telescope lsp_code_actions<cr>
-nnoremap<leader>xd :%Telescope lsp_range_code_actions<cr>
