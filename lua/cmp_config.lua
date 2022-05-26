@@ -1,4 +1,4 @@
--- luasnip setup
+  -- luasnip setup
   local luasnip = require 'luasnip'
 
   -- lspkind setups
@@ -22,6 +22,7 @@
             menu = {
                buffer   = "[buf]",
                nvim_lsp = "[LSP]",
+               cmp_tabnine = "[TN]",
             },
          },
       },
@@ -55,5 +56,6 @@
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'buffer' },
+      { name = 'cmp_tabnine'},
     },
   }

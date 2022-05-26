@@ -13,6 +13,7 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-buffer'
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip'
+  use {'tzachar/cmp-tabnine', after = "nvim-cmp", run='powershell ./install.ps1', requires = 'hrsh7th/nvim-cmp'}
   
   -- Nice symbols in autocomplete
   use 'onsails/lspkind.nvim'
@@ -61,5 +62,5 @@ return require('packer').startup(function()
   -- the rest of my setup in seperate files 
   require ("lsp_setup")
   require ("cmp_config")
-
+  require ("tabnine_setup")
 end)
