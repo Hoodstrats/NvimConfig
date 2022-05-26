@@ -1,5 +1,8 @@
 ### SETTING UP NVIM ON WINDOWS 10 (unsing SCOOP to install neovim first) 
 ---
+- Download your package manager of choice. For this I'm using [SCOOP](https://scoop.sh/)
+- Once you have that setup just open your terminal and run `scoop install nvim`
+- It'll install the latest version of neovim into `C:\Users\<USERNAME>\scoop\apps\neovim`
 - Create a new directory in ``C:\Users\<USERNAME>\AppData\Local\nvim``
 		- put ur init.vim in there once you create it 
 
