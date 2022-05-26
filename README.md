@@ -3,7 +3,7 @@
 - Create a new directory in ``C:\Users\<USERNAME>\AppData\Local\nvim``
 		- put ur init.vim in there once you create it 
 
-##### Setup using LUA 
+#### Setup using LUA 
 ---
 - This is where all our LUA is going to live ``C:\Users\<USERNAME>\scoop\apps\neovim\0.7.0\share\nvim\runtime\lua``
   - If you're cloning this REPO just take the lua folder and place at that address above `runtime\`
@@ -24,7 +24,7 @@ missing plugins
 - instead of MANUALLY installing all the LSP servers, I'm using `williamboman/nvim-lsp-installer` to do the initial install then 
 any manual setup within the `lsp_setup.lua` file I added 
 
-##### For Ease using SYMLINK on Windows for quicker access to the above folders 
+#### For Ease using SYMLINK on Windows for quicker access to the above folders 
 ---
 - Open up the DEFAULT Windows CMD(actual windows CMD the black background) use `mklink` command  `mklink /j Link(where to make the link) Target(what to link))`
 - Make sure that the LINK target/folder doesn't exist, it will be created
