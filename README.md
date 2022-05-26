@@ -23,3 +23,10 @@ missing plugins
 
 - instead of MANUALLY installing all the LSP servers, I'm using `williamboman/nvim-lsp-installer` to do the initial install then 
 any manual setup within the `lsp_setup.lua` file I added 
+
+##### For Ease using SYMLINK on Windows for quicker access to the above folders 
+---
+- Open up the DEFAULT Windows CMD(actual windows CMD the black background) use `mklink` command  `mklink /j Link(where to make the link) Target(what to link))`
+- Make sure that the LINK target/folder doesn't exist, it will be created
+
+With this any changes you make to the newly created folders should also happen within the ACTUAL folders they're linked to.
